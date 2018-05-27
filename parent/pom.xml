@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.root.parent</groupId>
+	<artifactId>parent</artifactId>
+	<version>${my-parent-to-child-version-control}</version>
+	<packaging>pom</packaging>
+	<name>parent-name</name>
+	<description>parent-description</description>
+	<modules>
+		<module>int</module>
+		<module>service</module>
+		<module>common</module>
+	</modules>
+	<properties>
+		<my-parent-to-child-version-control>0.0.5-SNAPSHOT</my-parent-to-child-version-control>
+		<project-lombok-version>1.16.16</project-lombok-version>
+		<log4j-version>1.2.15</log4j-version>
+	</properties>
+	
+	<!-- 
+		dependencies vs dependencyManagement 
+		dependencies - all the dependencies mentioned in it in parent pom then
+						all child get that dependency added even w/o explicitaly
+						mentioning there.
+		dependencyManagement- w/o explicitaly mentioning these dependency in child pom
+							  it will not be added to the child maven-module
+							  
+		eg. log4j will not be added to any child maven module since it is not mentioned in child pom
+		but lombok will be added automatically	
+	-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${project-lombok-version}</version>
+		</dependency>
+	</dependencies>
+</project>
