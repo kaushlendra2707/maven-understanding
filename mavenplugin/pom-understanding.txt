@@ -1,0 +1,45 @@
+<project>
+
+	<modelVersion>
+	
+	<!-- project information-->
+	
+	<name> done
+	<description> done
+	<url> done
+	<inceptionYears>
+	<licenses> done
+	<orgnization> done
+	<developers> done
+	<contributors> done
+	
+	<!-- The Basics -->
+	
+	<groupId> done
+	<artifactId> done
+	<version> done
+	<packaging> done
+	<dependencies> done
+	<parent> done
+	<dependenyManagement> done
+	<modules> done
+	<properties> done
+	
+	<!--Build settings -->
+	
+	<build> done
+	<reporting>
+	
+	<!--Environmental setting-->
+	
+	<issueManagement>
+	<ciManagement>
+	<mailingLists>
+	<scm>
+	<prequisites>
+	<repositories> done
+	<pluginRepositories> done
+	<distributionManagement>
+	<profiles>
+	
+</project>

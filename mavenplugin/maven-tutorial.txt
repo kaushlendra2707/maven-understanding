@@ -1,0 +1,248 @@
+/****************************************** Maven
+
+1. What is Maven
+Ans 
+	- Maven at its core is plugin executable framework
+		plugin -
+			- it encapsulate project build related functionality
+			- it is defined by a name and it contains set of goals(aka tasks aka maven commands)
+			- example 
+			- <plugins>
+			      <plugin>
+			        <artifactId>maven-clean-plugin</artifactId>
+			        <version>2.5</version>
+			        <executions>
+			          <execution>
+			            <id>default-clean</id>
+			            <phase>clean</phase>
+			            <goals>
+			              <goal>clean</goal>
+			            </goals>
+			          </execution>
+			        </executions>
+			      </plugin>
+			  </plugins>
+	- It is software project management and comprehension(i.e structure project
+	, build, test, report, documentation etc) tool.
+ 	
+ 	- It builds on convention over configuration.
+ 	- Maven is automated build tool
+ 	- Maven focussed on simplicity
+ 		-creation - structure of project
+ 		-management - dependencies management etc
+ 	- Maven covers build-oriented phases in ALM(Application Lifecycle Management)
+ 		- compiling
+ 		- build management(jar, ear,ear )
+ 		- testing
+ 		- Release Versioning
+ 		- Deployment
+ 		
+2. Advantages of Maven
+	- Project oriented
+	- Convention over configuration
+	- Dependency management
+	- Extensible through plugins
+	- Reuse through centralised repo
+	- multiple module project 
+	
+3. Project Oriented Builds :- 
+	- maven model builds as Project Object Model (POM).
+	- i.e it's all config is defined under XML file i.e pom.xml
+	- supports single inheritence tree like java i.e. every pom extends the super pom.
+	Ques- Advantage of super pom ?
+	Ques- What is effective pom and what is its advantage?
+	ans 
+	- Descripton of pom , including inherited value 
+	- it is used by mavent to execute goal or lifecycle 
+
+5. Introduction to work with maven
+Ans - 
+	- preparing dev environment
+	- prequisite
+		- JDK installed and env variable configured - since compile plugin of maven depends on "JDK java c" command .
+		- internet connection
+	- download maven, install and configure env variable as M2_HOME - "directry/maven"
+	- test
+		- JDK intalled using java -v or java --version
+		- maven installed using mvn -v or mvn --version
+
+6. Key Maven commands
+	- maven commands are usually 
+		- mvn -h or mvn --help
+		- one of the lifecycle phase of mvn
+		- other mve commands are mvn plugin goal   copying , refreshing classes,
+	- maven command syntax
+		- for mvn project lifecycle execution command
+			mvn <lifecycle_name> eg mvn clean  
+		- for mvn plugin  execution command
+			mvn <plugin_name>:<goal>
+			
+7. Maven Project Lifecycles -
+	- Maven uses the concep of lifecycle for project builds and deployment
+	- key phases in maven project's life cycle
+		- Creation - creation of projact - NO MVN COMMAND FOR CREATING PROJECT
+		- Compilation 
+			- compile the project code and its test cases- "mvn compile"
+			- it can configure this to have different version of java to be written as .class file
+			  it uses "-source" , "-target" flag of JDK
+			- we can incoke compile plugin goal as "mvn compiler:compile"
+			it does not invoke complie lifecycle it only invoke the goal
+			i.e we are bypassing all pre processes and invoking a specific task.
+		- Testing - Perform code testing eg junit - mvn test
+		- Package - build the project as jar/war- mvn build
+		- Installing
+		- Deployment
+	-Above lifecycle phase are dependent
+		- order of lifecycle phases
+			mvn validate -> mvn complie -> mvn test -> mvn build -> mvn install -> mvn deploy
+
+8.Creating a mven project
+	- maven has not provide mvn plugin goal as to create project
+	 i.e mvn create is not a valid command 
+	- maven use "mvn archetype:create" - to create a maven project
+	- this "mvn archetype:create" has been deprecated maven recommend us to use "mvn archetype:generate"
+		- "archetype" is a plugin
+		- "create" is one of the goal of archetype plugin
+		- other goals are "generate" etc
+	- maven jargon
+		- archetype - it is way to define the type of maven project(spring,struts ,osgi etc) we are developing.
+		- groupId -
+		- artifactId -
+		- version - 
+			- maven takes version very seriously to attach a dependencie
+			- hence take this property seriously 
+			- changing version may affect the project functionality
+			- for best practice instead of hard coding use alias using <properties> 
+		- POM coordinates 
+			- groupId, artifactId, version, packaging are called pom coordinates 
+			- Unique identifier(groupId+artifactId+version) project to maven and other projects 
+		
+9. other imp lifecycle of maven - 
+	- clean - "mvn clean"
+		- it is use to clean up i.e. it deletes the target folder
+		- it contain 3 phases
+			- pre-clean - preparation tasks
+			- clean - deletion of target folder
+			- post-clean - post-deletion tasks
+	- site - "mvn site"
+		- site lifecycle can be used to genrate project docs(api docs, test report etc)
+		- it contains 4 phases
+			- pre-site
+			- site
+			- post-site
+			- site-deploy
+	- default - "mvn"
+		- represent general build process for software 
+		- here we can define phasesas 
+		<lifecycle>
+			<id>default</id>
+			<phases>
+				<phase>validate</phase>
+				<phase>clean</phase>
+				<phase>test</phase>
+				<phase>install</phase>
+			</phases>
+		</lifecycle
+		Ques - where do we write above code ?
+		- once we configur as above on running "mvn" all above phase will be executed from
+		validate to install in the same order
+	- install - "mvn install" 
+		- it stores the war/jar package to internal local repo i.e. in ".m2"
+		- to by pass all pre phase and process invoke plugin goal as
+		  "mvn install:install"
+	- deploy - "mvn deploy"
+		- it deploys the war/jar package to central remote repo 
+		- central remote repo can be defined either in "pom.xml" or "~/.m2/settings.xml" 
+		- it does not deploy package to webserver/appserver
+		- 
+		- to by pass all pre phase and process invoke plugin goal as
+		  "mvn deploy:deploy"
+	- test - "mvn surefire:test"
+		- we can skip test using "-Dmaven.test.skip = true"
+	-package - "mvn jar:jar"
+		- package is a plugin
+		- it packages the proj as jar/war etc
+
+10. pom customization - 3 ways
+	- Modify Super/effective pom(BAD idea)
+		- unbundle maven-x.x.x-uber.jar
+		- modify org.apache.maven.project/pom-x.x.x.xml
+		- Rebuild  maven-x.x.x-uber.jar
+	- Modify project pom
+		- shared common config across all user for modified pom specific maven project
+	- Modify global settings
+		- modifying "~/.m2/settings.xml"
+		- shared common config across all user maven project 
+11. Versioning 
+	- it is defined as part of <version> tag in pom.xml
+	- Snapshot versions
+		- represent project under dev
+	- release versions
+		- project installed on local or remote repos withoy the word "SNAPSHOT" as part of version
+
+12. project properties - properties are used to simplfy pom 
+	- pom uses properties to get environment variable of sysytem
+	- build properties
+		- 5 types of properties associated with a build
+			- Project - "${project}"
+			- Environment - "${env}"
+			- Settings - "${settings}"
+			- Java System properties - "${java.home}"
+			- user defined
+		- Project Properties - 
+			- refrenced using "${project}" as
+				- "${project.groupId}"
+				- "${project.artifactId}"
+				- "${project.orgnization.name}"
+		- Environment Properties
+			- maven evaluate notations from actual OS env variable
+			- can be used to access shell(user specific) + system level variable
+			- refrenced using "${env}"
+				- "${env.PATH}"
+				- "${env.M2_HOME}"
+				- "${env.HOSTNAME}"
+		- Java System properties
+			- properties associate with "java.lang.System" class
+			- or we can get all properties returned by "System.getProperties()"
+			- refenced varies according to the property
+				- "${java.home}"
+				- "${os.name}"
+				- "${jdbc.drivers}"
+				- "${myApp.myProperty}" - ?
+		- Setting properties 
+			- setting for maven project is defined at 2 places
+				-"~/.m2/settings.xml"
+				- M2_HOME/conf/settings.xml
+			- setting.xml is used to cinfig repos. plugins and profiles
+			- system properties can be reference by "${settings}"
+		- User Defined properties
+		 	- custom properties defined by a dev
+		 	- these properties can be defined in pom.xml or "~/.m2/settings.xml"
+		 	- defined under <properties>
+		 	<properties>
+		 		<name>value</name>
+		 		<my-mvn-project-property-1-name>my-mvn-project-property-1-value</my-mvn-project-property-1-name>
+		 	</properties>
+		 	- it can be referenced using "${name-of-property}"
+		 		- "${my-mvn-project-property-1}"
+		 		- "${name}"
+
+13. Maven Build Settings - "<build>"
+
+	- Maven recommends default build setting is the safest way to create maven project
+	- we can modify build setting from pom.xml or "~/.m2/settings.xml"
+	- build setting in pom.xml overrides default setting of Super / effective pom 
+	- maven project config is defined as part of <build> tag
+	- can cofigure 
+		- <defualtGoals>
+		- <sourceDirectory>
+		- <directory>
+		- <finalName>
+		- <plugins>
+		- <extensions>
+		- <resources>
+
+4. Simple Maven customization
+5. Working with dependencies
+6. Multi module project
+7. Simplifying/ optimising the pom

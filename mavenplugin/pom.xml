@@ -1,0 +1,55 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.org</groupId>
+	<artifactId>mavenplugin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>mavenplugin-name</name>
+	<description>mavenplugin-desc</description>
+	<organization>
+		<name>Intelizign</name>
+		<url>www.intelizign.org</url>
+	</organization>
+	<!-- 
+		Describes the committers of a project.
+	 -->
+	<developers>
+		<developer>
+			
+		</developer>
+	</developers>
+	<!-- 
+		Describes the contributors to a project that are not yet committers.
+	 -->
+	<contributors>
+		<contributor>
+			
+		</contributor>	
+	</contributors>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<my-mvn-project-property-1>value</my-mvn-project-property-1>
+	</properties>
+	
+	<!-- 
+	This element describes all of the licenses for this project. Each 
+	 license is described by a license element, which is then described 
+	 by additional elements. Projects should only list the license(s) that 
+	 applies to the project and not the licenses that apply to 
+	 dependencies. If multiple licenses are listed, it is assumed that the 
+	 user can select any of them, not that they must accept all.
+	 -->
+	<licenses>
+		<license>
+			
+		</license>
+	</licenses>
+	<build>
+		<defaultGoal>install</defaultGoal>
+		
+	</build>
+	
+</project>

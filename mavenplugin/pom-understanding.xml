@@ -1,0 +1,99 @@
+<!-- Mvn project info  -->
+<project>
+	<modelVersion></modelVersion>
+	<!-- mvn project UUID starts -->
+	<groupId> + <artifactId> + <version>
+	<!-- mvn project UUID Ends -->
+	
+	<!--Addition maven project info starts-->
+	<name>mavenplugin-name</name>
+	<description>mavenplugin-desc</description>
+	<!--Addition maven project info - ends -->
+	
+	<!--  the url gives you information about the project, where the project is hosted-->
+	<url></url>
+	<!-- 
+	This element describes various attributes of the organization to 
+	 which the project belongs. These attributes are utilized when 
+	 documentation is created (for copyright notices and links).
+	 -->
+	 <organization>
+		<name>Intelizign</name>
+		<url>www.intelizign.org</url>
+	</organization>
+	
+	<!-- 
+		Describes the committers of a project.
+	 -->
+	<developers>
+		<developer>
+			
+		</developer>
+	</developers>
+	
+	<!-- 
+		Describes the contributors to a project that are not yet committers.
+	 -->
+	<contributors>
+		<contributor>
+			
+		</contributor>	
+	</contributors>
+	
+	<!-- 
+	This element describes all of the licenses for this project. Each 
+	 license is described by a license element, which is then described 
+	 by additional elements. Projects should only list the license(s) that 
+	 applies to the project and not the licenses that apply to 
+	 dependencies. If multiple licenses are listed, it is assumed that the 
+	 user can select any of them, not that they must accept all.
+	 -->
+	<licenses>
+		<license>
+			
+		</license>
+	</licenses>
+	<!-- 
+		Properties that can be used throughout the POM as a 
+	 substitution, and are used as filters in resources if enabled. The 
+	 format is <name>value</name>
+	 
+	 within pom these custom property will be used as 
+	 ${name-of-property}
+	 
+	 here we can tweak default maven pre defined propertis as well like utf encoding
+	 
+	 -->
+	<properties>
+		<name-of-property>value-of-property</name-of-property>
+	</properties>
+	
+	<!-- 
+			dependencyManagement - Default dependency information for projects that inherit from this 
+		 one. The dependencies in this section are not immediately 
+		 resolved. Instead, when a POM derived from this one declares a 
+		 dependency described by a matching groupId and artifactId, the 
+		 version and other values from this section are used for that 
+		 dependency if they were not already specified.
+		 
+		 dependencies - This element describes all of the dependencies associated with a 
+		 project. These dependencies are used to construct a classpath for 
+		 your project during the build process. They are automatically 
+		 downloaded from the repositories defined in this project. See the 
+		 dependency mechanism for more information.
+		 
+		 dependency
+	 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- dependencyManagement vs dependencies  -->
+	<dependencies>
+		<dependency>
+		</dependency>
+	</dependencies>
+</project>
